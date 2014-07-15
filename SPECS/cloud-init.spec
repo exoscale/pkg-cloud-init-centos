@@ -7,14 +7,14 @@
 
 Name:           cloud-init
 Version:        0.7.5
-Release:        1%{?dist}
+Release:        1%{?dist}.1
 Summary:        Cloud instance init scripts
 
 Group:          System Environment/Base
 License:        GPLv3
 URL:            http://launchpad.net/cloud-init
 Source0:        https://launchpad.net/cloud-init/trunk/%{version}/+download/%{name}-%{version}.tar.gz
-Source1:        cloud-init-rhel.cfg
+Source1:        cloud-init-centos.cfg
 Source2:        cloud-init-README.rhel
 Source3:        cloud-init-tmpfiles.conf
 
@@ -160,6 +160,9 @@ fi
 
 
 %changelog
+* Tue Jul 15 2014 Karanbir Singh <kbsingh@centos.org>
+- default to using centos as the login id
+
 * Mon Jun 23 2014 Lars Kellogg-Stedman <lars@redhat.com> 0.7.5-1 (redhat)
 - Rebased against upstream 0.7.5-6 in order to pull in GCE support.
 
