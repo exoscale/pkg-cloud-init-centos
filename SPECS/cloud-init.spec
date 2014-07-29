@@ -7,7 +7,7 @@
 
 Name:           cloud-init
 Version:        0.7.5
-Release:        1%{?dist}.1
+Release:        1%{?dist}.2
 Summary:        Cloud instance init scripts
 
 Group:          System Environment/Base
@@ -25,6 +25,8 @@ Patch0001: 0001-update-paths-for-rhel.patch
 Patch0002: 0002-fix-rsyslog-programname-match.patch
 Patch0003: 0003-Stopped-calling-udevadm-settle-with-quiet-since-syst.patch
 Patch0004: 0004-fix-typo-in-settings.py-preventing-metadata-being-fe.patch
+
+Patch1001: cloud-init-centos-opennebula.patch
 
 # Deal with noarch -> arch
 # https://bugzilla.redhat.com/show_bug.cgi?id=1067089
@@ -71,6 +73,7 @@ ssh keys and to let the user run various scripts.
 %patch0002 -p1
 %patch0003 -p1
 %patch0004 -p1
+%patch1001 -p1
 
 cp -p %{SOURCE2} README.rhel
 
@@ -160,6 +163,9 @@ fi
 
 
 %changelog
+* Tue Jul 29 2014 Karanbir Singh <kbsingh@centos.org>
+- Upgrade the opennebula datasource
+
 * Tue Jul 15 2014 Karanbir Singh <kbsingh@centos.org>
 - default to using centos as the login id
 
