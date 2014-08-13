@@ -7,7 +7,7 @@
 
 Name:           cloud-init
 Version:        0.7.5
-Release:        1%{?dist}.2
+Release:        1%{?dist}.3
 Summary:        Cloud instance init scripts
 
 Group:          System Environment/Base
@@ -27,6 +27,7 @@ Patch0003: 0003-Stopped-calling-udevadm-settle-with-quiet-since-syst.patch
 Patch0004: 0004-fix-typo-in-settings.py-preventing-metadata-being-fe.patch
 
 Patch1001: cloud-init-centos-opennebula.patch
+Patch1002: cloud-init-centos-hostnamefix.patch
 
 # Deal with noarch -> arch
 # https://bugzilla.redhat.com/show_bug.cgi?id=1067089
@@ -74,6 +75,7 @@ ssh keys and to let the user run various scripts.
 %patch0003 -p1
 %patch0004 -p1
 %patch1001 -p1
+%patch1002 -p1
 
 cp -p %{SOURCE2} README.rhel
 
@@ -163,6 +165,9 @@ fi
 
 
 %changelog
+* Wed Aug 13 2014 Karanbir Singh <kbsingh@centos.org>
+- add a patch to fix hostname issues ( Thomas Oulevey )
+
 * Tue Jul 29 2014 Karanbir Singh <kbsingh@centos.org>
 - Upgrade the opennebula datasource
 
