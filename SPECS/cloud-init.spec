@@ -7,7 +7,7 @@
 
 Name:           cloud-init
 Version:        0.7.5
-Release:        1%{?dist}.3
+Release:        2%{?dist}
 Summary:        Cloud instance init scripts
 
 Group:          System Environment/Base
@@ -165,6 +165,9 @@ fi
 
 
 %changelog
+* Tue Aug 26 2014 Karanbir Singh <kbsingh@centos.org> 0.7.5-2.el7.centos
+- Bump ver 
+
 * Wed Aug 13 2014 Karanbir Singh <kbsingh@centos.org>
 - add a patch to fix hostname issues ( Thomas Oulevey )
 
