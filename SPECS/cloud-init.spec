@@ -28,6 +28,8 @@ Patch0004: 0004-fix-typo-in-settings.py-preventing-metadata-being-fe.patch
 
 Patch1001: cloud-init-centos-opennebula.patch
 Patch1002: cloud-init-centos-hostnamefix.patch
+Patch1003: cloud-init-centos-opennebula-requiretty.patch
+Patch1004: cloud-init-centos-cloudstack-urlhandling.patch
 
 # Deal with noarch -> arch
 # https://bugzilla.redhat.com/show_bug.cgi?id=1067089
@@ -76,6 +78,8 @@ ssh keys and to let the user run various scripts.
 %patch0004 -p1
 %patch1001 -p1
 %patch1002 -p1
+%patch1003 -p1
+%patch1004 -p1
 
 cp -p %{SOURCE2} README.rhel
 
@@ -165,14 +169,18 @@ fi
 
 
 %changelog
+* Fri Aug 29 2014 Karanbir Singh <kbsingh@centos.org> 0.7.5-2.el7.centos.1
+- Add OpenNebula patch to work with requiretty in sudoers (Jfontan #7543)
+- Add cloudstack url workaround patch (Lucian #7544)
+
 * Tue Aug 26 2014 Karanbir Singh <kbsingh@centos.org> 0.7.5-2.el7.centos
 - Bump ver 
 
 * Wed Aug 13 2014 Karanbir Singh <kbsingh@centos.org>
-- add a patch to fix hostname issues ( Thomas Oulevey )
+- add a patch to fix hostname issues ( Thomas Oulevey #7545)
 
 * Tue Jul 29 2014 Karanbir Singh <kbsingh@centos.org>
-- Upgrade the opennebula datasource
+- Upgrade the opennebula datasource (Jfontan #7543)
 
 * Tue Jul 15 2014 Karanbir Singh <kbsingh@centos.org>
 - default to using centos as the login id
