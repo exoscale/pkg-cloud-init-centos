@@ -7,7 +7,7 @@
 
 Name:           cloud-init
 Version:        0.7.5
-Release:        2%{?dist}.1
+Release:        10%{?dist}.1
 Summary:        Cloud instance init scripts
 
 Group:          System Environment/Base
@@ -169,6 +169,9 @@ fi
 
 
 %changelog
+* Wed Sep 10 2014 Karanbir Singh <kbsingh@centos.org> 0.7.5-10.el7.centos.1
+- Bump release to prevent flapping with EPEL package
+
 * Fri Aug 29 2014 Karanbir Singh <kbsingh@centos.org> 0.7.5-2.el7.centos.1
 - Add OpenNebula patch to work with requiretty in sudoers (Jfontan #7543)
 - Add cloudstack url workaround patch (Lucian #7544)
