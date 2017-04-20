@@ -1,0 +1,26 @@
+From 7a3e39c2ab66f4d19f757d7ba8053bbfd37ce54e Mon Sep 17 00:00:00 2001
+From: Daniel Watkins <daniel.watkins@canonical.com>
+Date: Tue, 17 Feb 2015 16:33:23 +0000
+Subject: [PATCH 2/8] Add explanatory comment.
+
+---
+ cloudinit/sources/DataSourceCloudStack.py | 3 +++
+ 1 file changed, 3 insertions(+)
+
+diff --git a/cloudinit/sources/DataSourceCloudStack.py b/cloudinit/sources/DataSourceCloudStack.py
+index d6dbc2a02a74..a4c7dbdc4f6f 100644
+--- a/cloudinit/sources/DataSourceCloudStack.py
++++ b/cloudinit/sources/DataSourceCloudStack.py
+@@ -132,6 +132,9 @@ class DataSourceCloudStack(sources.DataSource):
+ 
+     def get_password(self):
+         def _do_request(req_string):
++            # We have to provide a valid HTTP request, but a valid HTTP
++            # response is not returned. This means that getresponse() chokes,
++            # so we use the socket directly to read off the password.
+             conn = http_client.HTTPConnection(self.vr_addr, 8080)
+             conn.request('GET', '', headers={'DomU_Request': req_string})
+             output = conn.sock.recv(1024).decode('utf-8').strip()
+-- 
+2.11.0
+

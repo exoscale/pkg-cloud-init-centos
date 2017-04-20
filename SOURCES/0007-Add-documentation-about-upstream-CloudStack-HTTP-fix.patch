@@ -1,0 +1,26 @@
+From 38cc3e0cda8039318a8faa4d8c47c3e122ffd709 Mon Sep 17 00:00:00 2001
+From: Daniel Watkins <daniel.watkins@canonical.com>
+Date: Mon, 23 Feb 2015 09:36:36 +0000
+Subject: [PATCH 7/8] Add documentation about upstream CloudStack HTTP fix.
+
+---
+ cloudinit/sources/DataSourceCloudStack.py | 3 +++
+ 1 file changed, 3 insertions(+)
+
+diff --git a/cloudinit/sources/DataSourceCloudStack.py b/cloudinit/sources/DataSourceCloudStack.py
+index 0d5a7a30f594..09de6c84328b 100644
+--- a/cloudinit/sources/DataSourceCloudStack.py
++++ b/cloudinit/sources/DataSourceCloudStack.py
+@@ -55,6 +55,9 @@ class CloudStackPasswordServerClient(object):
+     writes the text of its response on to the socket, without a status
+     line or any HTTP headers.  This makes HTTP libraries sad, which
+     explains the screwiness of the implementation of this class.
++
++    This should be fixed in CloudStack by commit
++    a72f14ea9cb832faaac946b3cf9f56856b50142a in December 2014.
+     """
+ 
+     def __init__(self, virtual_router_address):
+-- 
+2.11.0
+

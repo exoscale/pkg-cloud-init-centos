@@ -7,7 +7,7 @@
 
 Name:           cloud-init
 Version:        0.7.5
-Release:        10%{?dist}.1
+Release:        10%{?dist}.2
 Summary:        Cloud instance init scripts
 
 Group:          System Environment/Base
@@ -30,6 +30,24 @@ Patch1001: cloud-init-centos-opennebula.patch
 Patch1002: cloud-init-centos-hostnamefix.patch
 Patch1003: cloud-init-centos-opennebula-requiretty.patch
 Patch1004: cloud-init-centos-cloudstack-urlhandling.patch
+
+# Backport CloudStack passwords functionality:
+#  a0fcd8625103 Fetch and use passwords from CloudStack virtual router.
+#  7a3e39c2ab66 Add explanatory comment.
+#  ce61970a61d0 Failing to fetch a CloudStack password should never fail the whole DS.
+#  5fc6c19370c6 Set an explicit timeout when fetching CloudStack passwords.
+#  c3af32ff1276 Split CloudStack password handling out to separate class.
+#  ed397f571cbf Always close the password server connection, even on failure.
+#  38cc3e0cda80 Add documentation about upstream CloudStack HTTP fix.
+#  64415175e014 Use wget to fetch CloudStack passwords.
+Patch2001: 0001-Fetch-and-use-passwords-from-CloudStack-virtual-rout.patch
+Patch2002: 0002-Add-explanatory-comment.patch
+Patch2003: 0003-Failing-to-fetch-a-CloudStack-password-should-never-.patch
+Patch2004: 0004-Set-an-explicit-timeout-when-fetching-CloudStack-pas.patch
+Patch2005: 0005-Split-CloudStack-password-handling-out-to-separate-c.patch
+Patch2006: 0006-Always-close-the-password-server-connection-even-on-.patch
+Patch2007: 0007-Add-documentation-about-upstream-CloudStack-HTTP-fix.patch
+Patch2008: 0008-Use-wget-to-fetch-CloudStack-passwords.patch
 
 # Deal with noarch -> arch
 # https://bugzilla.redhat.com/show_bug.cgi?id=1067089
@@ -80,6 +98,14 @@ ssh keys and to let the user run various scripts.
 %patch1002 -p1
 %patch1003 -p1
 %patch1004 -p1
+%patch2001 -p1
+%patch2002 -p1
+%patch2003 -p1
+%patch2004 -p1
+%patch2005 -p1
+%patch2006 -p1
+%patch2007 -p1
+%patch2008 -p1
 
 cp -p %{SOURCE2} README.rhel
 
@@ -169,6 +195,9 @@ fi
 
 
 %changelog
+* Thu Apr 20 2017 Vincent Bernat <vbe@exoscale.ch> 0.7.5-10.el7.centos.2
+- Backport Cloudstack password fetching
+
 * Wed Sep 10 2014 Karanbir Singh <kbsingh@centos.org> 0.7.5-10.el7.centos.1
 - Bump release to prevent flapping with EPEL package
 
